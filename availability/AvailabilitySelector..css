@@ -1,0 +1,147 @@
+.availability-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .card-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .bulk-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .day-container {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .day-container:last-child {
+    border-bottom: none;
+  }
+  
+  .day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .day-controls {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .time-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-top: 10px;
+    user-select: none;
+  }
+  
+  .time-block {
+    height: 32px;
+    width: 48px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+  }
+  
+  .time-block:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .time-block.selected {
+    background-color: #2563eb;
+    color: white;
+    border-color: #1d4ed8;
+  }
+  
+  .time-block.selecting {
+    background-color: #93c5fd;
+    color: white;
+    border-color: #60a5fa;
+  }
+  
+  .time-ranges {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  
+  .button-primary {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .button-primary:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .button-secondary {
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+  
+  .button-secondary:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .button-danger {
+    background-color: #f3f4f6;
+    color: #dc2626;
+  }
+  
+  .button-danger:hover {
+    background-color: #fee2e2;
+  }
+  
+  .save-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+  }
