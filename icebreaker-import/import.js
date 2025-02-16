@@ -4,14 +4,13 @@ import { icebreakers } from './icebreakers.js';
 // Initialize the Appwrite client
 const client = new Client()
     .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject('67b157e600336980e6ee');         // Replace with your project ID
+    .setProject('67b157e600336980e6ee');         // project ID
 
 const databases = new Databases(client);
 
-// Replace these with your existing database and collection IDs
-// const DATABASE_ID = 'YOUR_DATABASE_ID';
+// const DATABASE_ID = 'DATABASE_ID';
 const DATABASE_ID = '67b1582900033fb8f3b0';
-// const COLLECTION_ID = 'YOUR_COLLECTION_ID';
+// const COLLECTION_ID = 'COLLECTION_ID';
 const COLLECTION_ID = '67b1585b0038a4c4e142'
 
 
