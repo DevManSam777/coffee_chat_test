@@ -1,0 +1,17 @@
+{
+    "name": "icebreaker-import",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview"
+    },
+    "devDependencies": {
+      "vite": "^6.1.0"
+    },
+    "dependencies": {
+      "appwrite": "17.0.0"
+    }
+  }
