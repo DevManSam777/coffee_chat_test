@@ -24,7 +24,6 @@ function getRandomNumbers(min, max, count) {
 // Function to get 5 random icebreaker questions
 async function getRandomQuestions() {
     try {
-        // First, get the maximum QuestionID to know our range
         const response = await databases.listDocuments(
             DATABASE_ID,
             COLLECTION_ID,
@@ -39,21 +38,28 @@ async function getRandomQuestions() {
         }
 
         const maxQuestionID = response.documents[0].QuestionID;
-        
-        // Get 5 random QuestionIDs
-        const randomIDs = getRandomNumbers(1, maxQuestionID, 5);
-        
-        // Fetch questions with these IDs in a single query
-        const questions = await databases.listDocuments(
-            DATABASE_ID,
-            COLLECTION_ID,
-            [
-                Query.equal('QuestionID', randomIDs),
-                Query.limit(5)
-            ]
-        );
 
-        return questions.documents;
+        const randomIDs = getRandomNumbers(1, maxQuestionID, 5);
+
+        const questions = [];
+
+        for (const id of randomIDs) {
+            const questionResponse = await databases.listDocuments(
+                DATABASE_ID,
+                COLLECTION_ID,
+                [
+                    Query.equal('QuestionID', id),
+                    Query.limit(1)
+                ]
+            );
+
+            if (questionResponse.documents.length > 0) {
+                questions.push(questionResponse.documents[0]);
+            }
+        }
+
+        return questions;
+
     } catch (error) {
         console.error('Error fetching random questions:', error);
         throw error;
@@ -64,30 +70,26 @@ async function getRandomQuestions() {
 async function displayRandomQuestions() {
     const questionsList = document.getElementById('questions-list');
     const loadingElement = document.getElementById('loading');
-    
+
     try {
-        // Show loading state
         loadingElement.style.display = 'block';
         questionsList.innerHTML = '';
-        
+
         const questions = await getRandomQuestions();
-        
-        // Hide loading state
+
         loadingElement.style.display = 'none';
-        
+
         if (questions.length === 0) {
             questionsList.innerHTML = '<li class="error">No questions found</li>';
             return;
         }
-        
-        // Display questions
+
         questions.forEach(question => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${question.text || question.question}`;
+            listItem.textContent = `${question.text || question.question}`; // Handle both 'text' and 'question' fields
             questionsList.appendChild(listItem);
         });
     } catch (error) {
-        // Hide loading state and show error
         loadingElement.style.display = 'none';
         questionsList.innerHTML = `<li class="error">Failed to load questions: ${error.message}</li>`;
     }
@@ -97,10 +99,11 @@ async function displayRandomQuestions() {
 document.addEventListener('DOMContentLoaded', () => {
     const questionsList = document.getElementById('questions-list');
     const refreshButton = document.getElementById('refresh-button');
-    
+    const loadingElement = document.getElementById('loading'); // Get the loading element
+
     // Set initial state
     questionsList.innerHTML = '<li>Click the button to load some coffee chat ice breaker questions!</li>';
-    
-    // Only add the click event listener
+    loadingElement.style.display = 'none'; // Hide loading initially
+
     refreshButton.addEventListener('click', displayRandomQuestions);
 });
