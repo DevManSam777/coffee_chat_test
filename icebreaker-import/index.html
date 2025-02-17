@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Icebreaker Questions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Icebreaker Question Generator</h1>
+        </header>
+        
+        <main>
+            <div id="loading" class="loading">Loading questions...</div>
+            <ul id="questions-list" class="questions-list"></ul>
+            <button id="refresh-button" class="refresh-button">Get New Questions</button>
+        </main>
+        
+        <footer>
+            <p>Powered by AppWrite</p>
+        </footer>
+    </div>
+    
+    <!-- Import getIcebreakers.js as a module -->
+    <script src="import.js" type="module"></script>
+    <script type="module" src="getIcebreakers.js"></script>
+</body>
+</html>

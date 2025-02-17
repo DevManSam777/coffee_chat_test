@@ -1,15 +1,16 @@
 {
   "name": "icebreaker-import",
+  "private": true,
   "version": "1.0.0",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "devDependencies": {
+    "vite": "^6.1.0"
+  },
   "dependencies": {
     "appwrite": "17.0.0"
   }
