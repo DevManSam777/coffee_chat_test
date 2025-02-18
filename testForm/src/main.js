@@ -26,12 +26,12 @@ function addUser(e) {
     );
 
     user.then(function (response) {
-        addUsersToDOM();  // Refresh the list after adding a user
-        form.reset();      // Clear the form
+        addUsersToDOM();  // Refresh the list after adding a use
     }, function (error) {
         console.error("Error creating document:", error);
         alert("Error creating user. Please try again."); 
     });
+    form.reset();      // Clear the form
 }
 
 async function addUsersToDOM() {
@@ -44,32 +44,34 @@ async function addUsersToDOM() {
         );
 
         response.documents.forEach((user) => {
-            const li = document.createElement('li');
+            const listUser = document.createElement('li'); //individual user
 
-            const idSpan = document.createElement('span');
-            idSpan.textContent = `ID: ${user['$id']}`;
-            const br1 = document.createElement('br');
-            const nameSpan = document.createElement('span');
-            nameSpan.textContent = `User: ${user['firstName']} ${user['lastName']}`;
-            const br2 = document.createElement('br');
-            const emailSpan = document.createElement('span');
-            emailSpan.textContent = `Email: ${user['email']}`;
+            const userId = document.createElement('li'); //list items within user list item
+            const fullName = document.createElement('li');
+            const emailItem = document.createElement('li');
+            fullName.textContent = `User: ${user['firstName']} ${user['lastName']}`;
 
-            li.appendChild(idSpan);
-            li.appendChild(br1);
-            li.appendChild(nameSpan);
-            li.appendChild(br2);
-            li.appendChild(emailSpan);
 
-            li.id = user.$id; // Set ID for removal
+            userId.innerHTML = `<strong>ID:</strong> ${user['$id']}`;
+            fullName.innerHTML = `<strong>User:</strong> ${user['firstName']} ${user['lastName']}`;
+            emailItem.innerHTML = `<strong>Email:</strong> ${user['email']}`;
+
+
+            listUser.appendChild(userId); //this adds them to listUser li inside ul
+            listUser.appendChild(fullName);
+            listUser.appendChild(emailItem);
+
+
+
+            listUser.id = user.$id; // Set ID for removal
 
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = "Delete";
             deleteBtn.addEventListener('click', () => removeUser(user.$id));
-            li.appendChild(deleteBtn);
+            listUser.appendChild(deleteBtn);
             
 
-            document.querySelector('ul').appendChild(li);
+            document.querySelector('ul').appendChild(listUser);
         });
     } catch (error) {
         console.error("Error listing documents:", error);
